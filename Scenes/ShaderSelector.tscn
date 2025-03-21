@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://s7il6bjr0w1c"]
+
+[ext_resource type="Script" uid="uid://8bsbtri6esd8" path="res://Scripts/ShaderSelector.cs" id="1_7jrtl"]
+
+[sub_resource type="PackedScene" id="PackedScene_hxs23"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("DemoShader", "Node"),
+"node_count": 1,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 0, 0),
+"variants": [],
+"version": 3
+}
+
+[node name="ShaderSelector" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+script = ExtResource("1_7jrtl")
+ShaderScene = SubResource("PackedScene_hxs23")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Placeholder"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+text = "Use"
+
+[connection signal="pressed" from="Button" to="." method="OnShaderSelected"]

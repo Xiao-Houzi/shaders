@@ -1,0 +1,113 @@
+[gd_scene load_steps=11 format=3 uid="uid://bp0x7lc05gyo0"]
+
+[ext_resource type="Script" uid="uid://jpox03cauhrg" path="res://Scripts/Renderer.cs" id="1_304vf"]
+[ext_resource type="Shader" uid="uid://c8bnx470hbijx" path="res://ShaderScenes/Demo.gdshader" id="2_0rsxl"]
+[ext_resource type="PackedScene" uid="uid://6do0tnekwso6" path="res://ShaderScenes/Demo.tscn" id="3_0jna1"]
+[ext_resource type="PackedScene" uid="uid://s7il6bjr0w1c" path="res://Scenes/ShaderSelector.tscn" id="3_0rsxl"]
+[ext_resource type="PackedScene" uid="uid://ua0wi4gismje" path="res://ShaderScenes/RayCaster.tscn" id="5_0jna1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0e48y"]
+shader = ExtResource("2_0rsxl")
+shader_parameter/RESOLUTION = Vector2i(3440, 1440)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_wtcfe"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0jna1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tvy0x"]
+shader = ExtResource("2_0rsxl")
+shader_parameter/RESOLUTION = Vector2i(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0jna1"]
+shader = ExtResource("2_0rsxl")
+shader_parameter/RESOLUTION = Vector2i(0, 0)
+
+[node name="Renderer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_304vf")
+
+[node name="ShaderView" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="TextureRect" type="TextureRect" parent="ShaderView"]
+z_as_relative = false
+material = SubResource("ShaderMaterial_0e48y")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_wtcfe")
+expand_mode = 2
+
+[node name="UIView" type="CanvasLayer" parent="."]
+
+[node name="UIPanel" type="HBoxContainer" parent="UIView"]
+z_index = 10
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 200.0
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="UIView/UIPanel"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="UIView/UIPanel/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UIView/UIPanel/Panel/MarginContainer"]
+material = SubResource("CanvasItemMaterial_0jna1")
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="UIView/UIPanel/Panel/MarginContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Aelfcraeft Shader Display
+"
+
+[node name="VBoxContainer" type="VFlowContainer" parent="UIView/UIPanel/Panel/MarginContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="UIView/UIPanel/Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Select a shader"
+
+[node name="ShaderSelector" parent="UIView/UIPanel/Panel/MarginContainer/VBoxContainer2/VBoxContainer" instance=ExtResource("3_0rsxl")]
+layout_mode = 2
+size_flags_horizontal = 1
+ShaderName = "Demo"
+ShaderScene = ExtResource("3_0jna1")
+
+[node name="ShaderSelector2" parent="UIView/UIPanel/Panel/MarginContainer/VBoxContainer2/VBoxContainer" instance=ExtResource("3_0rsxl")]
+layout_mode = 2
+ShaderName = "RayCaster"
+ShaderScene = ExtResource("5_0jna1")
+
+[node name="Control" type="Control" parent="UIView/UIPanel/Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Shader" parent="." instance=ExtResource("3_0jna1")]
+visible = false
+material = SubResource("ShaderMaterial_tvy0x")
+SceneShader = SubResource("ShaderMaterial_0jna1")

@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://c8ukeffgomeub"]
-
-[node name="ShaderDisplay" type="Node3D"]
-
-[node name="AspectRatioContainer" type="Node3D" parent="."]
