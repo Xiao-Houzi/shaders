@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://s7il6bjr0w1c"]
 
-[ext_resource type="Script" uid="uid://8bsbtri6esd8" path="res://Scripts/ShaderSelector.cs" id="1_7jrtl"]
+[ext_resource type="Script" uid="uid://dbrvu62tp2ijs" path="res://Scripts/ShaderSelector.cs" id="1_7jrtl"]
 
 [sub_resource type="PackedScene" id="PackedScene_hxs23"]
 _bundled = {

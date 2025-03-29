@@ -35,10 +35,14 @@ public partial class Renderer : Control
 
     public void SetShader(PackedScene shaderScene)
     {
-
+        ShaderHolder.QueueFree();
+        RemoveChild(ShaderHolder);
         ShaderHolder = shaderScene.Instantiate() as ShaderHolder;
+        GD.Print(ShaderHolder.Name + " loaded " + ShaderHolder.GetType().Name);
+        AddChild(ShaderHolder);
         ShaderCanvas.Material = ShaderHolder.SceneShader;
         ShaderMaterial sm = ShaderCanvas.Material as ShaderMaterial;
         sm.SetShaderParameter("RESOLUTION", new Vector2(ShaderCanvas.Size.X, ShaderCanvas.Size.Y));
+        ShaderHolder.SetParameters();
     }
 }

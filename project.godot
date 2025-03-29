@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Shaders"
-run/main_scene="uid://bp0x7lc05gyo0"
-config/features=PackedStringArray("4.4", "C#", "Forward Plus")
+run/main_scene="res://Scenes/Renderer.tscn"
+config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 
 [display]
 

@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bp0x7lc05gyo0"]
+[gd_scene load_steps=13 format=3 uid="uid://bp0x7lc05gyo0"]
 
-[ext_resource type="Script" uid="uid://jpox03cauhrg" path="res://Scripts/Renderer.cs" id="1_304vf"]
-[ext_resource type="Shader" uid="uid://c8bnx470hbijx" path="res://ShaderScenes/Demo.gdshader" id="2_0rsxl"]
+[ext_resource type="Script" path="res://Scripts/Renderer.cs" id="1_304vf"]
+[ext_resource type="Shader" path="res://ShaderScenes/Demo.gdshader" id="2_0rsxl"]
 [ext_resource type="PackedScene" uid="uid://6do0tnekwso6" path="res://ShaderScenes/Demo.tscn" id="3_0jna1"]
 [ext_resource type="PackedScene" uid="uid://s7il6bjr0w1c" path="res://Scenes/ShaderSelector.tscn" id="3_0rsxl"]
-[ext_resource type="PackedScene" uid="uid://ua0wi4gismje" path="res://ShaderScenes/RayCaster.tscn" id="5_0jna1"]
+[ext_resource type="PackedScene" uid="uid://ua0wi4gismje" path="res://ShaderScenes/RayCast/RayCaster.tscn" id="5_0jna1"]
+[ext_resource type="Shader" path="res://ShaderScenes/debug.gdshader" id="6_2mjw7"]
+[ext_resource type="PackedScene" uid="uid://cqnk3vd2vqvap" path="res://ShaderScenes/RayMarch/RayMarcher.tscn" id="6_ho7pg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0e48y"]
 shader = ExtResource("2_0rsxl")
@@ -19,8 +21,19 @@ shader = ExtResource("2_0rsxl")
 shader_parameter/RESOLUTION = Vector2i(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0jna1"]
-shader = ExtResource("2_0rsxl")
+shader = ExtResource("6_2mjw7")
 shader_parameter/RESOLUTION = Vector2i(0, 0)
+shader_parameter/CameraPos = Vector3(0, 0, 0)
+shader_parameter/CameraDir = Vector3(0, 0, 0)
+shader_parameter/CameraUp = Vector3(0, 0, 0)
+shader_parameter/CameraRight = Vector3(0, 0, 0)
+shader_parameter/LightCount = 0
+shader_parameter/LightPos = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/LightType = PackedInt32Array(0, 0, 0, 0, 0)
+shader_parameter/ObjectCount = 0
+shader_parameter/ObjectPos = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/ObjectDim = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/ObjectType = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [node name="Renderer" type="Control"]
 layout_mode = 3
@@ -101,8 +114,13 @@ ShaderScene = ExtResource("3_0jna1")
 
 [node name="ShaderSelector2" parent="UIView/UIPanel/Panel/MarginContainer/VBoxContainer2/VBoxContainer" instance=ExtResource("3_0rsxl")]
 layout_mode = 2
-ShaderName = "RayCaster"
+ShaderName = "Raycaster"
 ShaderScene = ExtResource("5_0jna1")
+
+[node name="ShaderSelector3" parent="UIView/UIPanel/Panel/MarginContainer/VBoxContainer2/VBoxContainer" instance=ExtResource("3_0rsxl")]
+layout_mode = 2
+ShaderName = "Ray Marcher"
+ShaderScene = ExtResource("6_ho7pg")
 
 [node name="Control" type="Control" parent="UIView/UIPanel/Panel/MarginContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2

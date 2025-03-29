@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqnk3vd2vqvap"]
+
+[ext_resource type="Script" path="res://ShaderScenes/RayMarch/RayMarcher.cs" id="1_8ya42"]
+[ext_resource type="Shader" path="res://ShaderScenes/RayMarch/RayMarcher.gdshader" id="2_ru1ka"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_da7u1"]
+shader = ExtResource("2_ru1ka")
+shader_parameter/RESOLUTION = Vector2i(0, 0)
+shader_parameter/CameraPos = Vector3(0, 0, 0)
+shader_parameter/CameraDir = Vector3(0, 0, 0)
+shader_parameter/CameraUp = Vector3(0, 0, 0)
+shader_parameter/CameraRight = Vector3(0, 0, 0)
+shader_parameter/ObjectCount = 0
+shader_parameter/ObjectPos = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/ObjectDim = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/ObjectType = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/ObjectColor = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/LightCount = 0
+shader_parameter/LightPos = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/LightColor = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/SkyColor1 = Vector3(0.5, 0.7, 1)
+shader_parameter/SkyColor2 = Vector3(1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjunw"]
+albedo_color = Color(0.835066, 0.278254, 0.325736, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kjunw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cc5p"]
+albedo_color = Color(0.28272, 0.524815, 0.285156, 1)
+
+[node name="Shader" type="Node2D"]
+script = ExtResource("1_8ya42")
+SceneShader = SubResource("ShaderMaterial_da7u1")
+
+[node name="Scene" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Scene"]
+transform = Transform3D(1, 0, 0, 0, 0.993499, 0.113845, 0, -0.113845, 0.993499, 0, 0.717051, 0)
+
+[node name="Lights" type="Node3D" parent="Scene"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Scene/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44416, 1.21295, -3.76956)
+
+[node name="Objects" type="Node3D" parent="Scene"]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Scene/Objects"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.494208, -3)
+radius = 1.0
+material = SubResource("StandardMaterial3D_kjunw")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Scene/Objects"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0, 0, -2.93716)
+mesh = SubResource("BoxMesh_kjunw")
+material = SubResource("StandardMaterial3D_0cc5p")
