@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://s7il6bjr0w1c"]
 
-[ext_resource type="Script" uid="uid://dbrvu62tp2ijs" path="res://Scripts/ShaderSelector.cs" id="1_7jrtl"]
+[ext_resource type="Script" path="res://Scripts/ShaderSelector.cs" id="1_7jrtl"]
 
 [sub_resource type="PackedScene" id="PackedScene_hxs23"]
 _bundled = {
@@ -18,6 +18,7 @@ _bundled = {
 [node name="ShaderSelector" type="HBoxContainer"]
 anchors_preset = 10
 anchor_right = 1.0
+offset_right = -3399.0
 offset_bottom = 31.0
 grow_horizontal = 2
 size_flags_horizontal = 3
@@ -25,7 +26,20 @@ size_flags_vertical = 0
 script = ExtResource("1_7jrtl")
 ShaderScene = SubResource("PackedScene_hxs23")
 
-[node name="Label" type="Label" parent="."]
+[node name="Rect" type="ReferenceRect" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Margin" type="MarginContainer" parent="Rect"]
+layout_mode = 0
+offset_right = 98.0
+offset_bottom = 31.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="Rect/Margin"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -34,7 +48,7 @@ text = "Placeholder"
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.25
 text = "Use"
 
 [connection signal="pressed" from="Button" to="." method="OnShaderSelected"]

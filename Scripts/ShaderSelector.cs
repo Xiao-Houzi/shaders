@@ -8,7 +8,7 @@ public partial class ShaderSelector : Container
 
     public override void _Ready()
     {
-        GetNode<Label>("Label").Text = ShaderName;
+        GetNode<Label>("Rect/Margin/Label").Text = ShaderName;
         
     }
 
@@ -16,5 +16,6 @@ public partial class ShaderSelector : Container
     {
         GD.Print("Shader selected: " + ShaderName);
         GetTree().Root.GetNode<Renderer>("Renderer").SetShader(ShaderScene);
+
     }
 }

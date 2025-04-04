@@ -1,6 +1,19 @@
 [gd_scene load_steps=2 format=3 uid="uid://exb5rsx3d8s3"]
 
-[ext_resource type="Script" uid="uid://cgom71m44lri2" path="res://Scripts/ShaderHolder.cs" id="1_34qqm"]
+[ext_resource type="Script" path="res://Scripts/ShaderHolder.cs" id="1_34qqm"]
 
 [node name="Shader" type="Node2D"]
 script = ExtResource("1_34qqm")
+
+[node name="ShaderUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="ShaderUI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Default Shader UI
+"

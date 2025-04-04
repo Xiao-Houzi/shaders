@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ua0wi4gismje"]
+[gd_scene load_steps=5 format=3 uid="uid://ua0wi4gismje"]
 
 [ext_resource type="Script" path="res://ShaderScenes/RayCast/RayCaster.cs" id="1_mpbb7"]
 [ext_resource type="Shader" path="res://ShaderScenes/RayCast/RayCaster.gdshader" id="2_0aaj4"]
+[ext_resource type="PackedScene" uid="uid://d4l5gsktgs56w" path="res://GeometryScene_1.tscn" id="3_bn6if"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eioyb"]
 shader = ExtResource("2_0aaj4")
@@ -23,36 +24,25 @@ shader_parameter/ObjectDim = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 shader_parameter/ObjectType = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 shader_parameter/ObjectColour = PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kjunw"]
-albedo_color = Color(0.835066, 0.278254, 0.325736, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_kjunw"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cc5p"]
-albedo_color = Color(0.28272, 0.524815, 0.285156, 1)
-
 [node name="Shader" type="Node2D"]
 script = ExtResource("1_mpbb7")
 SceneShader = SubResource("ShaderMaterial_eioyb")
 
-[node name="Scene" type="Node3D" parent="."]
+[node name="Scene" parent="." instance=ExtResource("3_bn6if")]
 
-[node name="Camera3D" type="Camera3D" parent="Scene"]
-transform = Transform3D(1, 0, 0, 0, 0.993499, 0.113845, 0, -0.113845, 0.993499, 0, 0.717051, 0)
+[node name="ShaderUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Lights" type="Node3D" parent="Scene"]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Scene/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.44416, 1.21295, -3.76956)
-
-[node name="Objects" type="Node3D" parent="Scene"]
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Scene/Objects"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.494208, -3)
-radius = 1.0
-material = SubResource("StandardMaterial3D_kjunw")
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Scene/Objects"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 0.1, 0, -1, -4.37114e-09, 0, 0, -2.93716)
-mesh = SubResource("BoxMesh_kjunw")
-material = SubResource("StandardMaterial3D_0cc5p")
+[node name="Label" type="Label" parent="ShaderUI"]
+layout_mode = 0
+offset_right = 137.0
+offset_bottom = 23.0
+text = "Default Shader UI
+"
